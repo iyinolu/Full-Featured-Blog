@@ -1,0 +1,15 @@
+{
+    "python.pythonPath": "C:\\ProgramData\\Anaconda3\\python.exe",
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django",
+        "--errors-only",
+        "--load-plugins pylint_django"
+    ],
+    "css.validation": {
+        "class":false,
+        "id":false
+    }
+    
+}
+

@@ -1,0 +1,15 @@
+{% extends "blog\base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend class="border-buttom mb-4"> Profile Info </legend>
+        {{ u_form|crispy }}
+        {{ p_form|crispy }}
+    </fieldset>     
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Update</button>
+    </div>
+</form>
+{% endblock content %}
