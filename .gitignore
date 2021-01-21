@@ -1,2 +1,5 @@
-/django_project/__pycache__
-/.vscode
+
+django_project/__pycache__
+
+#vscode stuff
+.vscode/
