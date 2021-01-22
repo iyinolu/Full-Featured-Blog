@@ -24,15 +24,14 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls, name='app-admin'), #maps to admin
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
-    path('logout/', users_views.my_logout, name='logout'),
-    path('', include('blog.urls')),  #maps to blog.url file
-    path('register/', users_views.register, name='register'), #maps to register file
-    # path('profile/', users_views.profile, name='profile'), #maps to register file
-    path('editprofile/', users_views.ProfileUpdate, name='profile-update'), #maps to register file
-    path('profile/', users_views.profile, name='profile'),
-    path('user/<int:pk>', users_views.user_profile, name='user-posts')
+    path('admin/', admin.site.urls, name='app-admin'),
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'), # Login view route
+    path('logout/', users_views.MyLogout, name='logout'), # Logout view route
+    path('', include('blog.urls')),  # Blog url route
+    path('register/', users_views.Register, name='register'), # Register view route
+    path('editprofile/', users_views.ProfileUpdate, name='profile-update'), # EditProfile view route
+    path('profile/', users_views.ProfileView, name='profile'), # User profile view route
+    path('user/<int:pk>', users_views.UserProfile, name='user-posts') # User profile and posts route
 ]
 
 if settings.DEBUG:

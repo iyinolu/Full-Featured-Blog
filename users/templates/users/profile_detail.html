@@ -17,7 +17,6 @@
         {% block userposts %}{% endblock %}
     </div>
     {% for post in posts %}
-    <p>{{ pk }}</p>
     <article class="media content-section">
         <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="">
         <div class="media-body">
