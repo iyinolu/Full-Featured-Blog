@@ -39,14 +39,14 @@ def UserProfile(request, pk):
         view.
     """
     pk = int(pk)
+    # get profile of the parsed primary key
     user_details = Profile.objects.filter(id=pk).first()
+    # get user id from profile object
     user = Profile.objects.filter(id=pk).first().user.id
 
     user_posts = Posts.objects.filter(author=user).all().order_by('-date_posted')
     paginator = Paginator(user_posts, 3)
-    is_paginated = True
     page_number = request.GET.get('page')
-    print(page_number)
     page_obj = paginator.get_page(page_number)
     
     template = 'users/profile_detail.html'
