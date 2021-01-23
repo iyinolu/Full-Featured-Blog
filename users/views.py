@@ -11,7 +11,6 @@ from users.models import Profile
 from blog.models import Posts
 
 
-
 def Register(request):    
     """View to display register page required for creating a
     user account
@@ -40,15 +39,24 @@ def UserProfile(request, pk):
         view.
     """
     pk = int(pk)
-    print(pk)
     user_details = Profile.objects.filter(id=pk).first()
     user = Profile.objects.filter(id=pk).first().user.id
 
-    user_posts = Posts.objects.filter(author=user).order_by('-date_posted')
+    user_posts = Posts.objects.filter(author=user).all().order_by('-date_posted')
     paginator = Paginator(user_posts, 3)
+    is_paginated = True
+    page_number = request.GET.get('page')
+    print(page_number)
+    page_obj = paginator.get_page(page_number)
+    
     template = 'users/profile_detail.html'
     logged_user = str(request.user)
-    return render(request, template, {'posts':user_posts, 'user_details': user_details, 'logged_user':logged_user})
+    return render(request, template, {'posts':user_posts, 
+                                    'user_details': user_details, 
+                                    'logged_user':logged_user,
+                                    'page_obj': page_obj
+                                    
+    })
         
 
 
@@ -56,7 +64,6 @@ def ProfileUpdate(request, *args):
     """ Display profile update form that can only be accessed
     by the current logged in user.
     """
-    
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
