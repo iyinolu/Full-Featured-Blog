@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: pauliyinolu@gmail.com
+Date: Sun, 24 Jan 2021 22:26:39 -0000
+Message-ID: <161152719918.10236.16962052107337181124@paul>
+
+
+You're receiving this email because you requested a password reset for your user account at localhost:8000.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/password-reset/confirm/MQ/ah06gf-c25d2d499eb044168715f16c90646561/
+
+Your username, in case you’ve forgotten: osinowo-iyinolu
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+
+-------------------------------------------------------------------------------
