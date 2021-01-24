@@ -19,3 +19,5 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+## delete image when a user changes a profile picture
