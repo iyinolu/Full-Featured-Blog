@@ -8,8 +8,8 @@
         {{ u_form|crispy }}
         {{ p_form|crispy }}
     </fieldset>     
-    <div class="form-group">
-        <button class="btn btn-outline-info" type="submit">Update</button>
+    <div class="form-group">   
+        <a href='{% url "user-posts" user.profile.id %}'><button class="btn btn-outline-info" type="submit">Submit</button></a>
     </div>
 </form>
 {% endblock content %}

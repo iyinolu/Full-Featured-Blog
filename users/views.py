@@ -11,8 +11,10 @@ from users.models import Profile
 from blog.models import Posts
 
 
-
-def register(request):    
+def Register(request):    
+    """View to display register page required for creating a
+    user account
+    """
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -26,23 +28,42 @@ def register(request):
 
 
 @login_required
-def profile(request):
+def ProfileView(request):
+    """Display user profile information.
+    """
     return render(request, "users/profile.html")
 
 
-def user_profile(request, pk):
+def UserProfile(request, pk):
+    """ Display user profile information and posts on the same 
+        view.
+    """
+    pk = int(pk)
+    # get profile of the parsed primary key
     user_details = Profile.objects.filter(id=pk).first()
+    # get user id from profile object
     user = Profile.objects.filter(id=pk).first().user.id
 
-    user_posts = Posts.objects.filter(author=user).order_by('-date_posted')
+    user_posts = Posts.objects.filter(author=user).all().order_by('-date_posted')
     paginator = Paginator(user_posts, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     template = 'users/profile_detail.html'
     logged_user = str(request.user)
-    return render(request, template, {'posts':user_posts, 'user_details': user_details, 'logged_user':logged_user})
+    return render(request, template, {'posts':user_posts, 
+                                    'user_details': user_details, 
+                                    'logged_user':logged_user,
+                                    'page_obj': page_obj
+                                    
+    })
         
 
 
-def ProfileUpdate(request):
+def ProfileUpdate(request, *args):
+    """ Display profile update form that can only be accessed
+    by the current logged in user.
+    """
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
@@ -53,7 +74,7 @@ def ProfileUpdate(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been updated')
-            return redirect('profile')
+            return redirect('user-posts', request.user.profile.id)
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
@@ -66,6 +87,6 @@ def ProfileUpdate(request):
     return render(request, "users/editProfile.html", context)
 
 
-def my_logout(request):
+def MyLogout(request):
     return logout_then_login(request)
 
