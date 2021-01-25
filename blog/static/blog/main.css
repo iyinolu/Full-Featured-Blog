@@ -1,7 +1,6 @@
 body {
   background: #fafafa;
   color: #333333;
-  margin-top: 5rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -86,4 +85,23 @@ a.article-title:hover {
 .account-icon {
   width: 10px;
   height: 10px;
+}
+
+.preheader {
+  height: 10px;
+  background-color: rgb(255, 204, 95);
+}
+
+.top-logo {
+  /* size: auto; */
+  height: auto;
+
+
+}
+
+
+.helloo {
+  background-color:black;
+  height: 500px;
+  width: auto;
 }
