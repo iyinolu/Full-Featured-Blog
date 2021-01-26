@@ -19,18 +19,10 @@
 	
 </head>
 <body>
-	<!-- <div> -->
-		<!-- <img class='top-logo' height="100px" src="/media/responsibleai.png" alt=""> -->
-		<!-- <h1 class="top-logo display-5 pt-1 pb-1"> Word View </h1> -->
-		<!-- <p>Talk, Comment and Share</p>
-		<div class="helloo" > Hellooooo
-		</div> -->
-	<!-- </div> -->
-
-	<header class="site-header pb-5">
-	  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+	<header class="site-header">
+	  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 	    <div class="container">
-	      <a class="navbar-brand mr-4" href="/">News Blog</a>
+		  <a class="navbar-brand mr-4 logo-container" href="/"><img class='logo-image' src="/media/responsibleai.svg" alt=""></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	      </button>
@@ -39,7 +31,7 @@
 				<a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
 				<a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
 	        </div>
-	        <!-- Navbar Right Side -->
+	        
 	        <div class="navbar-nav">
 				{% if user.is_authenticated %}
 					<a class="nav-item nav-link" href='{% url "user-posts" user.profile.id %}'><img class="rounded-circle" width="30px" height="30px" src="{{ user.profile.image.url }}" alt=""></a>
@@ -68,7 +60,7 @@
 			{% endif %}
 			{% block content %}{% endblock %}
 	    	</div>
-	    	<div class="col-md-4">
+	    	<!-- <div class="col-md-4">
 		      <div class="content-section">
 		        <h3>Our Sidebar</h3>
 		        <p class="text-muted">You can put any information here you'd like.
@@ -80,7 +72,7 @@
 		          </ul>
 		        </p>
 		      </div>
-		    </div>
+		    </div> -->
 		 </div>
 	</main>
 
