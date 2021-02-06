@@ -1,4 +1,13 @@
 {% extends "blog\base.html" %}
 {% block content %}
-	<h1>About!</h1>
+	<div class="jumbotron jumbo-color">
+		<h1 class="display-4">Welcome to ResponsibleAI Blog!</h1>
+		<p class="lead">Read and learn about the latest advances<br>
+		in the field of artificial intelligence, but more importantly you'd get <br>
+	to find out about the community's effort in making sure their solutions are <br>
+ethically responsible and environmentally sustainable.</p>
+	<hr>
+	<a class="btn btn-explore btn-lg" href="{% url 'blog-home' %}" role="button">Explore</a>
+
+	</div>
 {% endblock content %}

@@ -7,8 +7,8 @@ from django.contrib.auth.views import logout_then_login
 from django.views.generic import DetailView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.paginator import Paginator
-from users.models import Profile
-from blog.models import Posts
+from ..users.models import Profile
+from ..blog.models import Posts
 
 
 def Register(request):    

@@ -20,24 +20,32 @@
 </head>
 <body>
 	<header class="site-header">
-	  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-	    <div class="container">
-		  <a class="navbar-brand mr-4 logo-container" href="/"><img class='logo-image' src="/media/responsibleai.svg" alt=""></a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	      </button>
-	      <div class="collapse navbar-collapse" id="navbarToggle">
-	        <div class="navbar-nav mr-auto">
+	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+	    <div class="container col-md-8 col-sm-6">
+			<a class="navbar-brand logo-container" href="/"><img class='logo-image' src="/media/responsibleai.svg" alt=""></a>
+			{% if user.is_authenticated %}
+				<div class="navbar-nav">
+					<a class="nav-item nav-link" href='{% url "user-posts" user.profile.id %}'><img class="rounded-circle" width="30px" height="30px" src="{{ user.profile.image.url }}" alt=""></a>
+				</div>
+			{% endif %}
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+		  	</button>
+		</div>
+		
+		<div class="collapse navbar-collapse" id="navbarToggle">		
+	        <div class="navbar-nav">
 				<a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
 				<a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-	        </div>
-	        
+
+			</div>
+	
 	        <div class="navbar-nav">
+				<!-- <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+				<a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a> -->
 				{% if user.is_authenticated %}
-					<a class="nav-item nav-link" href='{% url "user-posts" user.profile.id %}'><img class="rounded-circle" width="30px" height="30px" src="{{ user.profile.image.url }}" alt=""></a>
-					<a class="nav-item nav-link" href='{% url "user-posts" user.profile.id %}'>Profile</a>
+					<!-- <a class="nav-item nav-link" href='{% url "user-posts" user.profile.id %}'>Profile</a> -->
 					<a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
-					<button class="btn btn-outline-secondary p-0 ml-4" type="POST"><a class="nav-item nav-link" href="{% url 'post-create' %}">Create Post</a></button>
 				{% else %}
 					<a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
 					<a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
@@ -50,7 +58,7 @@
 	</header>
   	<main role="main" class="container">
 	  	<div class="row">
-	    	<div class="col-md-8">
+	    	<div class="col-md-12 col-sm-8">
 			{% if messages %}
 				{% for message in messages %}
 					<div class="alert alert-{{ message.tags }}">
